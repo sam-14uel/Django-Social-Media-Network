@@ -1,0 +1,55 @@
+<div class="post" id="post_{{post.content_id}}" data-post-id="{{post.content_id}}">
+    <div class="info">
+        <div class="person">
+            <a href="/u/@{{post.poster.username}}">
+                <img src="{{post.poster.profile.profile_picture.url}}">
+                <a href="/u/@{{post.poster.username}}">@{{post.poster.username}}</a>
+            </a>
+            <span class="circle">.</span>
+            <span>{{post.created|date|title}}</span>
+        </div>
+        <div class="more">
+            <img src="/static/images/show_more.png" alt="show more">
+        </div>
+      </div>
+      <div class="image">
+            {% for picture in post_medias %}<img src="{{picture.picture.url}}">{% endfor %}
+      </div>
+      <div class="desc">
+        <div class="icons">
+            <div class="icon_left d-flex">
+                <div class="like" data-post-id="{{post.content_id}}" id="like_post_{{post.content_id}}">
+                    <img class="not_loved" src="/static/images/love.png" data-post-id="{{post.content_id}}" id="post_{{post.content_id}}">
+                    <img class="loved" src="/static/images/heart.png" data-post-id="{{post.content_id}}" id="post_{{post.content_id}}">
+                </div>
+                <div class="chat">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#message_modal">
+                        <img src="/static/images/bubble-chat.png" >
+                    </button>
+                </div>
+                <div class="send">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#send_message_modal">
+                        <img src="/static/images/send.png" >
+                    </button>
+                </div>
+            </div>
+            <div class="save not_saved">
+                <img class="hide saved" src="/static/images/save_black.png" >
+                <img class="not_saved" src="/static/images/save-instagram.png" >
+            </div>
+        </div>
+        <div class="liked">
+            <a class="bold" href="#" data-bs-post-id="{{post.content_id}}">10 likes</a>
+        </div>
+        <div class="post_desc">
+            <p>
+                <a class="bold" href="#">{{post.poster.username}}</a>
+                {{post.caption}}
+            </p>
+            <p><a class="gray" href="#">View all 5 comments</a></p>
+            <input type="text" placeholder="Add a comments...">
+        </div>
+    </div>
+</div>

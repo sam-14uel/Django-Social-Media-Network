@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MABNET - Chats With @{% for other_user in other_user %}{{other_user.username}}{% endfor %}</title>
+    {% include 'stylesheets.html' %}
+</head>
+<body>
+    <input type="hidden" name="" id="room_id_value" value="{{chat_group.room_id}}" hidden>
+    <input type="hidden" name="" id="request_user_username" value="{{request.user.username}}" hidden>
+    <div class="post_page message_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+        <div id="message">
+            <div class="message_container">
+                {% include 'mychats.html' %}
+                <div class="message">
+                    <div class="options">
+                        {% for other_user in other_user %}
+                        <div class="cart">
+                            <div>
+                                <div class="img">
+                                    <img src="{{other_user.profile.profile_picture.url}}" alt="">
+                                </div>
+                                <div class="info">
+                                    <p class="name">{{other_user.first_name}} {{other_user.last_name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="other">
+                            <a href="#">
+                                <img src="/static/images/telephone.png" alt="call">
+                            </a>
+                            <a href="#">
+                                <img src="/static/images/video_call.png" alt="video call">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="content" id="id_chat_item_container">
+                        {% for message in chat_messages %}
+                            {% if message.sender == request.user %}
+                                <div class="my_message" id="chat_id_{{message.chat_id}}">
+                                    <p class="p_message">{{message.text}}</p>
+                                </div>
+                            {% else %}
+                                <div class="response_message" id="chat_id_{{message.chat_id}}">
+                                    <p class="p_message">{{message.text}}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                    
+                        <!--<form>-->
+                            <input type="text" id="id_message_send_input" placeholder="Write Your Message"/>
+                            <input type="file" name="" id="fileInput" multiple/>
+                            <button id="id_message_send_button">Send</button>
+                        <!--</form>-->
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+    </div>
+
+
+
+    {% include 'scripts.html' %}
+    <script src="/static/js/private_chat.js"></script>
+</body>
+
+</html>
