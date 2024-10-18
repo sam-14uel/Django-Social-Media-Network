@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile | @{{request.user.username}} on MABNET</title>
+    {% include 'stylesheets.html' %}
+</head>
+<body>
+
+    <div class="post_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+        <div class="profile_container">
+            {% include 'edit_profile_container.html' %}
+        </div>
+
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+    </div>
+
+    {% include 'scripts.html' %}
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!-- Modal for add messages-->
+<div class="modal fade" id="message_modal{post.content_id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-post-id="{{post.id}}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="comments">
+                    <div class="comment">
+                        <div class="d-flex">
+                            <div class="img">
+                                <img src="{{request.user.profile.profile_picture.url}}" alt="">
+                            </div>
+                            <div class="content">
+                                <div class="person">
+                                    <h4>namePerson</h4>
+                                    <span>3j</span>
+                                </div>
+                                <p>Wow amzing shot</p>
+                                <div class="replay">
+                                    <button class="replay">replay</button>
+                                    <button class="translation">see translation</button>
+                                </div>
+                                <div class="answers">
+                                    <button class="see_comment">
+                                        <span class="hide_com">Hide all responses</span>
+                                        <span class="show_c"> <span class="line"></span> See the <span> 1
+                                            </span> answers</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="like">
+                            <img class="not_loved" src="/static/images/love.png" alt="">
+                            <img class="loved" src="/static/images/heart.png" alt="">
+                            <p> 55</p>
+                        </div>
+                    </div>
+                    <div class="responses">
+                        <div class="response comment">
+                            <div class="d-flex">
+                                <div class="img">
+                                    <img src="/static/images/profile_img.jpg" alt="">
+                                </div>
+                                <div class="content">
+                                    <div class="person">
+                                        <h4>namePerson</h4>
+                                        <span>3j</span>
+                                    </div>
+                                    <p>Wow amzing shot</p>
+                                    <div class="replay">
+                                        <button>replay</button>
+                                        <button>see translation</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="like">
+                                <img class="not_loved" src="/static/images/love.png" alt="">
+                                <img class="loved" src="/static/images/heart.png" alt="">
+                                <p> 55</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <form method="post">
+                    <div class="input">
+                        <img src="{{request.user.profile.profile_picture.url}}" alt="">
+                        <input type="text" id="emoji_comment" placeholder="Add a comment..." />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5"/>
+                        </svg>
+                    </div>
+                    <!-- <div class="emogi">
+                        <img src="/static/images/emogi.png" alt="">
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

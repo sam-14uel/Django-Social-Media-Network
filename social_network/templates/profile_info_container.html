@@ -1,0 +1,199 @@
+{% load custom_tags %}
+<link rel="stylesheet" href="/static/sass/popover.css">
+<div class="profile_info">
+    <div class="cart">
+            <div class="img">
+                <img id="myImg" src="{{profile.profile_picture.url}}" alt="">
+                <!--<img src="/static/images/profile_img.jpg" alt="">-->
+            </div>
+            <div class="info">
+                <p class="name">
+                    @{{profile.user.username}}
+                    <!--<button class="edit_profile">
+                        Edit profile 
+                    </button>--> 
+                </p>
+
+                <p class="nick_name">{{profile.user.first_name}} {{profile.user.last_name}}
+                    {% if profile.verified %}
+                        <span style="cursor: pointer;" data-bs-toggle="popover" title="Verfied account" data-bs-content="This account is verified" data-bs-placement="bottom" data-bs-trigger="hover">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 22 22">
+                                <path fill="blue" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/>
+                            </svg>
+                            {% for affiliate in affiliates %}<img style="height: 18px; width: 18px;" src="{{affiliate.company.logo_icon.url}}" alt="" data-bs-toggle="popover" title="Verfied account" data-bs-content="This account is affiliated with @{{affiliate.company.user.username}}" data-bs-placement="bottom" data-bs-trigger="hover"> {% endfor %}<br>
+                        </span>
+                    {% endif %}
+                    {% if profile.professional_mode %}
+                        {% if profile.category %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                            </svg>    {{profile.category.name}}
+                        {% endif %}
+                    {% endif %}
+                </p>
+
+                <p class="desc">
+                    <!--{% if profile.bio %}
+                        {{profile.bio|render_mentions_and_hashtags}} <br>
+                    {% endif %}-->
+                    {% if profile.bio %}
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#bio">View bio</a>
+                    <div id="bio" class="collapse">
+                        <p>{{profile.bio|render_mentions_and_hashtags}}</p> <br>
+                    </div>
+                    {% endif %}
+                </p>
+                <p class="desc">
+                    {% if profile.website_url %}
+                        <a rel="noopener" target="_blank" href="{{profile.website_url}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"/>
+                                <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"/>
+                            </svg>    {{profile.website_url}}
+                        </a>
+                    {% endif %}
+                    {% if profile.location %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                        </svg>    {{profile.location}} <br>
+                    {% endif %}
+                    {% if profile.hide_birthday == False %}
+                        {% if profile.date_of_birth %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cake2" viewBox="0 0 16 16">
+                                <path d="m3.494.013-.595.79A.747.747 0 0 0 3 1.814v2.683q-.224.051-.432.107c-.702.187-1.305.418-1.745.696C.408 5.56 0 5.954 0 6.5v7c0 .546.408.94.823 1.201.44.278 1.043.51 1.745.696C3.978 15.773 5.898 16 8 16s4.022-.227 5.432-.603c.701-.187 1.305-.418 1.745-.696.415-.261.823-.655.823-1.201v-7c0-.546-.408-.94-.823-1.201-.44-.278-1.043-.51-1.745-.696A12 12 0 0 0 13 4.496v-2.69a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 12 1.813V4.3a22 22 0 0 0-2-.23V1.806a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 9 1.813v2.204a29 29 0 0 0-2 0V1.806A.747.747 0 0 0 7.092.802l-.598-.79-.595.792A.747.747 0 0 0 6 1.813V4.07c-.71.05-1.383.129-2 .23V1.806A.747.747 0 0 0 4.092.802zm-.668 5.556L3 5.524v.967q.468.111 1 .201V5.315a21 21 0 0 1 2-.242v1.855q.488.036 1 .054V5.018a28 28 0 0 1 2 0v1.964q.512-.018 1-.054V5.073c.72.054 1.393.137 2 .242v1.377q.532-.09 1-.201v-.967l.175.045c.655.175 1.15.374 1.469.575.344.217.356.35.356.356s-.012.139-.356.356c-.319.2-.814.4-1.47.575C11.87 7.78 10.041 8 8 8c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575C1.012 6.639 1 6.506 1 6.5s.012-.139.356-.356c.319-.2.814-.4 1.47-.575M15 7.806v1.027l-.68.907a.94.94 0 0 1-1.17.276 1.94 1.94 0 0 0-2.236.363l-.348.348a1 1 0 0 1-1.307.092l-.06-.044a2 2 0 0 0-2.399 0l-.06.044a1 1 0 0 1-1.306-.092l-.35-.35a1.935 1.935 0 0 0-2.233-.362.935.935 0 0 1-1.168-.277L1 8.82V7.806c.42.232.956.428 1.568.591C3.978 8.773 5.898 9 8 9s4.022-.227 5.432-.603c.612-.163 1.149-.36 1.568-.591m0 2.679V13.5c0 .006-.012.139-.356.355-.319.202-.814.401-1.47.576C11.87 14.78 10.041 15 8 15c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575-.344-.217-.356-.35-.356-.356v-3.02a1.935 1.935 0 0 0 2.298.43.935.935 0 0 1 1.08.175l.348.349a2 2 0 0 0 2.615.185l.059-.044a1 1 0 0 1 1.2 0l.06.044a2 2 0 0 0 2.613-.185l.348-.348a.94.94 0 0 1 1.082-.175c.781.39 1.718.208 2.297-.426"/>
+                            </svg>    Born on {{profile.date_of_birth}}
+                        {% endif %}
+                    {% endif %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-event" viewBox="0 0 16 16">
+                        <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+                        <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>    Joined {{profile.user.date_joined|date|title}}
+                </p>
+                <div class="general_info">
+                    <p><span>{{posts.count}}</span> post</p>
+                    <!--<p><span>{{shorts.count}}</span> short</p>
+                    <p><span>{{videos.count}}</span> video</p>-->
+                    <p data-bs-toggle="modal" data-bs-target="#profile_network" style="cursor: pointer;"><span>{{followers_list.count}}</span> followers</p>
+                    <p data-bs-toggle="modal" data-bs-target="#profile_network" style="cursor: pointer;"><span>{{followings_list.count}}</span> following</p>
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>
+{% if work_experiences %}
+<div class="desc">
+    <a href="#" data-bs-toggle="collapse" data-bs-target="#work_experience">View Work Experience</a>
+    {% for work_experience in work_experiences %}
+        <div id="work_experience" class="collapse">
+            <span class="desc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+                {{work_experience.role}} at @{{work_experience.work_place.user.username}}
+            </span>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+{% endif %}
+<div class="highlights">
+    {% for highlight in highlights %}
+        {% if highlight.video %}
+            <div class="highlight">
+                <div class="img">
+                    <img src="{{highlight.video.video.url}}" alt="">
+                </div>
+                <p>{{highlight.name}}</p>
+            </div>
+        {% elif highlight.short %}
+            <div class="highlight">
+                <div class="img">
+                    <img src="{{highlight.short.short.url}}" alt="">
+                </div>
+                <p>{{highlight.name}}</p>
+            </div>
+        {% elif highlight.post %}
+            <div class="highlight">
+                <div class="img">
+                    <img src="" alt="">
+                </div>
+                <p>{{highlight.name}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% if request.user == profile.user %}
+        <div class="highlight highlight_add">
+            <div class="img">
+                <img src="/static/images/plus.png" alt="">
+            </div>
+            <p>New</p>
+        </div>
+    {% endif %}
+</div>
+<hr>
+<div class="posts_profile">
+    <ul class="nav-pills w-100 d-flex justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item mx-2" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                <img src="/static/images/feed.png" alt="posts">
+                POSTS
+            </button>
+        </li>
+        <li class="nav-item mx-2" role="presentation">
+          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+            <img src="/static/images/save-instagram.png" alt="saved posts">
+            SAVED
+          </button>
+        </li>
+        <li class="nav-item mx-2" role="presentation">
+          <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+            <img src="/static/images/tagged.png" alt="tagged posts">
+            TAGGED
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+            {% if posts %}
+            <div id="posts_sec" class="post">
+                {% for post in posts %}
+                    <div class="item">
+                        {% for pic in post_medias %}<img class="img-fluid item_img" src="{{pic.picture.url}}" alt="{{post.poster.username}}'s post picture">{% endfor %}
+                    </div>
+                {% endfor %}  
+            </div>
+            {% else %}
+                No posts yet
+            {% endif %}
+
+        </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+            <div id="saved_sec" class="post">
+                <!--<div class="item">
+                    <img class="img-fluid item_img" src="https://i.ibb.co/6WvdZS9/account12.jpg" alt="">
+                </div>
+                <div class="item">
+                    <img class="img-fluid item_img" src="https://i.ibb.co/pJ8thst/account13.jpg" alt="">
+                </div>--->
+                
+            </div>
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+            <div id="tagged" class="post">
+                <!---{% for post in posts %}
+                <div class="item">
+                    <img class="img-fluid item_img" src="https://i.ibb.co/Zhc5hHp/account4.jpg" alt="">
+                </div>
+                {% endfor %}
+                <div class="item">
+                    <img class="img-fluid item_img" src="https://i.ibb.co/SPTNbJL/account5.jpg" alt="">
+                </div>-->
+            </div>
+        </div>
+        
+      </div>
+</div>
+

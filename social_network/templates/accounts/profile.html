@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{profile.user.first_name}} | @{{profile.user.username}} on Afriwallstreet</title>
+{% include 'stylesheets.html' %}
+    <style>
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            background: none;
+            border-top: 1px solid black;
+            border-radius: 0px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="post_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+        <div class="profile_container">
+            
+            {% include 'profile_info_container.html' %}
+
+        </div>
+
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+        {% include 'media_view.html' %}
+
+        {% include 'profile_network.html' %}
+
+        
+
+    </div>
+
+{% include 'scripts.html' %}
+</body>
+
+</html>

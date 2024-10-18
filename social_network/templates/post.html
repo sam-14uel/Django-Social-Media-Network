@@ -1,0 +1,74 @@
+<div class="post" id="post_{{post.content_id}}" data-post-id="{{post.content_id}}">
+    <div class="info">
+        <div class="person">
+            <a href="/u/@{{post.poster.username}}">
+                <img src="{{post.poster.profile.profile_picture.url}}">
+                <a href="/u/@{{post.poster.username}}">@{{post.poster.username}}</a>
+            </a>
+            <span class="circle">.</span>
+            <span>{{post.created|date|title}}</span>
+        </div>
+        <div class="more">
+            <img src="/static/images/show_more.png" alt="show more">
+        </div>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <div class="image">
+        {% for picture in post_medias %}<img class="" data-bs-media-id="{{picture.media_id}}" id="post_image_{{picture.media_id}}" src="{{picture.picture.url}}">{% endfor %}
+    </div>
+    <div class="desc">
+        <div class="icons">
+            <div class="icon_left d-flex">
+                <div class="like">
+                    {% if like_status == False %}
+                    <div class="not_loved" id="not_loved_post_{{post.content_id}}" data-post-id="{{post.content_id}}">
+                        <!--<img class=""  src="/static/images/love.png">-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg>
+                    </div>   
+                    {% elif like_status %}
+                    <div class="loved" id="loved_post_{{post.content_id}}" data-post-id="{{post.content_id}}">
+                        <!--<img class=""  src="/static/images/heart.png">-->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="chat">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#message_modal{post.content_id}">
+                        <img src="/static/images/bubble-chat.png" >
+                    </button>
+                </div>
+                <div class="send">
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                        data-bs-target="#send_message_modal">
+                        <img src="/static/images/send.png" >
+                    </button>
+                </div>
+            </div>
+            <div class="save not_saved">
+                <img class="hide saved" src="/static/images/save_black.png" >
+                <img class="not_saved" src="/static/images/save-instagram.png" >
+            </div>
+        </div>
+        <div class="liked">
+            <a class="bold" href="#" data-bs-post-id="{{post.content_id}}">10 likes</a>
+        </div>
+        <div class="post_desc">
+            <p>
+                <a class="bold" href="#">{{post.poster.username}}</a>
+                {{post.caption}}
+            </p>
+            <p><a class="gray" href="#">View all 5 comments</a></p>
+            <input type="text" placeholder="Comment as @{{request.user.username}}">
+        </div>
+    </div>
+</div>
+
+<!--<div class="alert alert-success">
+    <strong>Success !</strong> Successfully posted <a href="" class="alert-link">view post</a>
+</div>-->

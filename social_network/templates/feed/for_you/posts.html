@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afriwallstreet - For you - Posts</title>
+    {% include 'stylesheets.html' %}
+</head>
+<body>
+    {% csrf_token %}
+    <div class="post_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+        <div class="second_container">
+            <!--***** posts_container start ****** -->
+            <div class="main_section">
+                <div class="posts_container">
+                    <div class="stories">
+                        <!--<div class="owl-carousel items">
+                        </div>-->
+
+                        {% for message in messages %}
+                        <div class="alert alert-success">
+                            <strong></strong>{{message}} <!--<a href="" class="alert-link" role="alert">view post</a>-->
+                        </div>
+                        {% endfor %}
+                        For you | Following
+                    </div>
+
+                    <div class="posts">
+                        {% for post in recommendations %}
+                            {% include 'post.html' %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <!--***** posts_container end ****** -->
+
+            <!--***** followers_container start ****** -->
+            {% include 'trends_&_suggestions.html' %}
+            <!--***** followers_container end ****** -->
+
+        </div>
+
+        <!-- Modal for sending posts-->
+        {% include 'send_post.html' %}
+
+        <!-- Modal for add messages-->
+        {% include 'comment_post.html' %}
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+        <!--open img-->
+        {% include 'media_view.html' %}
+
+    </div>
+
+    {% include 'scripts.html' %}
+
+    
+    <script src="/static/js/contents.js"></script>
+</body>
+
+</html>

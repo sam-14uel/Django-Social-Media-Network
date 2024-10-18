@@ -1,0 +1,63 @@
+<div class="persons">
+    <div class="account_name">
+        <p>{{request.user.username}}</p>
+        <p class="search">
+            <img src="/static/images/edit.png" alt="edit">
+        </p>
+    </div>
+    <div class="account_message">
+        <div class="desc">
+            <p>Messages</p>
+            <p><a href="#">3 requests</a></p>
+        </div>
+        {% if chatroom_data %}
+            {% for chatroom in chatroom_data %}
+            <div class="cart">
+                <a href="/chats/c/{{chatroom.room_id}}">
+                    <div>
+                        <div class="img">
+                            <img src="{{chatroom.room_pic}}" alt="">
+                        </div>
+                        <div class="info">
+                            <p class="name">{{chatroom.room_name}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}No chats yet
+        {% endif %}
+
+        <!--{% for chatroom in chatrooms %}
+            {% if chatroom.is_private %}
+                <div class="cart">
+                    <a href="/chats/c/{{chatroom.room_id}}">
+                        {% for other_member in other_member %}
+                            <div>
+                                <div class="img">
+                                    <img src="{{other_member.profile.profile_picture.url}}" alt="">
+                                </div>
+                                <div class="info">
+                                    <p class="name">{{other_member.first_name}} {{other_member.last_name}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </a>
+                </div>
+            {% else %}
+                <div class="cart">
+                    <a href="/chats/c/{{chatroom.room_id}}">
+                        <div>
+                            <div class="img">
+                                <img src="{{chatroom.group_picture.url}}" alt="">
+                            </div>
+                            <div class="info">
+                                <p class="name">{{chatroom.group_name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}-->
+    </div>
+</div>
