@@ -1,0 +1,11 @@
+__pycache__/
+db.sqlite3
+
+.vscode/
+
+/migrations/*.pyc
+/sessions/
+
+/cache/
+
+/template_cache/
