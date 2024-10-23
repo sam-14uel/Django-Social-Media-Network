@@ -24,15 +24,16 @@
                         </div>-->
 
                         {% for message in messages %}
-                        <div class="alert alert-success">
+                        <div class="alert alert-success alert-dismissible" role="alert">
                             <strong></strong>{{message}} <!--<a href="" class="alert-link" role="alert">view post</a>-->
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                         {% endfor %}
                         For you | Following
                     </div>
 
                     <div class="posts">
-                        {% for post in recommendations %}
+                        {% for post in recommended_posts %}
                             {% include 'post.html' %}
                         {% endfor %}
                     </div>
@@ -65,6 +66,7 @@
 
     
     <script src="/static/js/contents.js"></script>
+    <script src="/static/js/toast.js"></script>
 </body>
 
 </html>

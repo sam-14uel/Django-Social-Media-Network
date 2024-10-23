@@ -67,8 +67,7 @@
                             <img class="circle story" src="{{request.user.profile.profile_picture.url}}">
                             <span class="d-none d-lg-block ">Profile</span>
                         </a>
-                    </li>
-                    
+                    </li> 
                 </ul>
             </div>
             <div class="more">
@@ -79,9 +78,13 @@
                         <span class="d-none d-lg-block ">More</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">
+                        <li><a class="dropdown-item" href="/settings">
                                 <span>Settings</span>
                                 <img src="/static/images/reglage.png">
+                            </a></li>
+                        <li><a class="dropdown-item" href="/dashboard">
+                                <span>Dashboard</span>
+                                <img src="/static/images/history.png">
                             </a></li>
                         <li><a class="dropdown-item" href="#">
                                 <span>Your activity</span>
@@ -144,7 +147,9 @@
                             </div>
                         </div>
                     </div>
+                    <a href="/chats/"><img src="/static/images/send.png"></a>
                     <div class="notifications notification_icon">
+                        
                         <a href="./notification.html">
                             <img src="/static/images/love.png">
                         </a>

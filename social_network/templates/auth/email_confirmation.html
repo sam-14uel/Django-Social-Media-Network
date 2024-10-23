@@ -1,0 +1,11 @@
+{% autoescape off%}
+
+Welcome to <a href="noesai.com">noesai</a>
+
+Hello {{ name }}!
+
+please confirm your email by clicking on the link or <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">click me</a>,
+
+Confirmation link: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+{% endautoescape %}

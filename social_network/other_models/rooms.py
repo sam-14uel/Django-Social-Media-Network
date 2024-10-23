@@ -32,7 +32,7 @@ class Chat(models.Model):
     chat_id = models.CharField(max_length=128, unique=True, default=shortuuid.uuid)
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE, related_name='chat_messages')
-    text = models.TextField()
+    text = models.TextField(null=True)
     #from social_network.other_models.rooms import ChatMedia
     media = models.ManyToManyField('ChatMedia', blank=True)
 

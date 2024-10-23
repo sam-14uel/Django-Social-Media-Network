@@ -10,8 +10,8 @@ from django.contrib.auth.models import User
 @login_required
 def chat_view(request, room_id):
     chat_group = get_object_or_404(ChatRoom, room_id=room_id)
-    #chat_messages = Chat.objects.filter(room=chat_group)
-    chat_messages = Chat.objects.filter(room=chat_group).prefetch_related('chat_media')
+    chat_messages = Chat.objects.filter(room=chat_group)
+    #chat_messages = Chat.objects.filter(room=chat_group).prefetch_related('chat_media')
 
     current_user = request.user  # Get the logged-in user
 
@@ -102,7 +102,7 @@ def get_or_create_chatroom(request, username):
     return redirect('chatroom', chatroom.room_id)
 
 
-@login_required
+#@login_required
 def create_groupchat(request):
     
     if request.method == 'POST':
@@ -111,7 +111,7 @@ def create_groupchat(request):
         new_group_chat.members.add(request.user)
         new_group_chat.save()
         return redirect('chatroom', new_group_chat.room_id)
-    return render(request, 'a_rtchat/create_groupchat.html')
+    #return render(request, 'a_rtchat/create_groupchat.html')
 
 
 @login_required
@@ -200,7 +200,7 @@ def my_chatrooms(request):
     if chatrooms:
         context = {
             'chatrooms': chatrooms,
-            'other_member': other_member,
+            #'other_member': other_member,
             'chatroom_data': chatroom_data
             }
         return render(request, 'chats/chats.html', context)

@@ -24,8 +24,8 @@ class Tag(models.Model):
 class Post(models.Model):
     content_id = models.CharField(max_length=128, unique=True, default=shortuuid.uuid)
     poster = models.ForeignKey(User, on_delete=models.CASCADE)
-    from.media import PostMedia
-    picture = models.ManyToManyField(PostMedia)
+    #from.media import PostMedia
+    picture = models.ManyToManyField("PostMedia", blank=True)
     caption = models.CharField(max_length=1000000, verbose_name="Caption")
     created = models.DateTimeField(auto_now_add=True)
     tag = models.ManyToManyField(Tag, related_name="tags", blank=True)
@@ -36,6 +36,17 @@ class Post(models.Model):
     
     def __str__(self):
         return self.caption
+    
+
+class PostMedia(models.Model):
+    picture = models.ImageField(upload_to='media/posts', verbose_name="Picture", null=True)
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_media', null=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    media_id = models.CharField(max_length=128, unique=True, default=shortuuid.uuid, null=True)
+
+    def __str__(self):
+        return f"{self.post_id} + {self.created}"
     
 
 class Video(models.Model):
@@ -126,8 +137,24 @@ class Comment(models.Model):
     short = models.ForeignKey(Short, on_delete=models.CASCADE, null=True, blank=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE, null=True, blank=True)
     body = models.TextField()
-    from social_network.other_models.media import CommentMedia
-    media = models.ManyToManyField(CommentMedia, blank=True)
+    #from social_network.other_models.media import CommentMedia
+    media = models.ManyToManyField("CommentMedia", blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+class CommentMedia(models.Model):
+    media = models.FileField(upload_to='media/comments', null=True)
+
+    media_is_img = models.BooleanField(default=False)
+    media_is_vid = models.BooleanField(default=False)
+    media_is_aud = models.BooleanField(default=False)
+    media_is_doc = models.BooleanField(default=False)
+
+    post_id = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
+    short_id = models.ForeignKey(Short, on_delete=models.CASCADE, null=True)
+    video_id = models.ForeignKey(Video, on_delete=models.CASCADE, null=True)
+
+    media_id = models.CharField(max_length=128, unique=True, default=shortuuid.uuid, null=True)
+
     created = models.DateTimeField(auto_now_add=True)
 
 

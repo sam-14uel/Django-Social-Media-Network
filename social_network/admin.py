@@ -2,9 +2,9 @@ from django.contrib import admin
 from.other_models.accounts import Profile, ProfileAdmin, WorkExperience, WorkExperienceAdmin, UserInteraction, UserInteractionAdmin, ProfileCategory, ProfileCategoryAdmin
 from.other_models.accounts import Affiliate, AffiliateAdmin, Highlight, HighlightAdmin, Follow, FollowAdmin
 from.other_models.rooms import Chat, ChatAdmin, ChatRoom, ChatRoomAdmin, ChatMedia
-from.other_models.contents import Poll, Post, Video, Short, ContentAdmin, React, ReactAdmin, Comment, CommentAdmin
+from.other_models.contents import Poll, Post, Video, Short, ContentAdmin, React, ReactAdmin, Comment, CommentAdmin, PostMedia
 from.other_models.bots import Bot, BotAdmin
-from.other_models.media import PostMedia,ChatMediaAdmin, PostMediaAdmin
+from.other_models.media import ChatMediaAdmin, PostMediaAdmin
 
 # Register your models here.
 

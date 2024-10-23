@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhance profile | @{{request.user.username}} on Afriwallstreet</title>
+    {% include 'stylesheets.html' %}
+</head>
+<body>
+    <div class="post_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+            {% include 'enhance_profile_container.html' %}
+
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+    </div>
+    {% include 'scripts.html' %}
+</body>
+</html>

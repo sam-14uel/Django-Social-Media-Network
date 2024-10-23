@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afriwallstreet | Dashboard</title>
+    <style>
+    .order-card {
+        color: #fff;
+    }
+
+    /*.bg-c-blue {
+        background: linear-gradient(45deg,#4099ff,#73b4ff);
+    }
+
+    .bg-c-green {
+        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+    }
+
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }*/
+    .bg-c-blue {
+        background: linear-gradient(45deg,gold, black,grey);
+    }
+
+    .bg-c-green {
+        background: linear-gradient(45deg,gold, black,grey);
+    }
+
+    .bg-c-yellow {
+        background: linear-gradient(45deg,gold, black,grey);
+    }
+
+    .bg-c-pink {
+        background: linear-gradient(45deg,gold, black,grey);
+    }
+    .order-card i {
+        font-size: 26px;
+    }
+
+    .f-left {
+        float: left;
+    }
+
+    .f-right {
+        float: right;
+    }    
+    </style>
+{% include 'stylesheets.html' %}
+</head>
+<body>
+    <div class="post_page">
+        <!--***** nav menu start ****** -->
+        {% include 'nav.html' %}
+        <!--***** nav menu end ****** -->
+
+        {% include 'dashboard_container.html' %}
+
+
+        <!--Create model-->
+        {% include 'create_post.html' %}
+
+        {% include 'media_view.html' %}    
+
+    </div>
+
+{% include 'scripts.html' %}
+</body>
+
+</html>

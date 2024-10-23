@@ -2,7 +2,7 @@
     <div class="account_name">
         <p>{{request.user.username}}</p>
         <p class="search">
-            <img src="/static/images/edit.png" alt="edit">
+            <img src="/static/images/edit.png" alt="edit" data-bs-target="#create_group" data-bs-toggle="modal">
         </p>
     </div>
     <div class="account_message">
@@ -12,7 +12,7 @@
         </div>
         {% if chatroom_data %}
             {% for chatroom in chatroom_data %}
-            <div class="cart">
+            <div class="cart" id="chatroom_{{chatroom.room_id}}">
                 <a href="/chats/c/{{chatroom.room_id}}">
                     <div>
                         <div class="img">
@@ -61,3 +61,6 @@
         {% endfor %}-->
     </div>
 </div>
+
+<!--Create group-->
+{% include 'create_group.html' %}

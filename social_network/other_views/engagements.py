@@ -1,6 +1,6 @@
 from django.http import JsonResponse
-from social_network.other_models.contents import Post, React, Short, Video
-from social_network.other_models.media import PostMedia
+from social_network.other_models.contents import Post, React, Short, Video, PostMedia
+#from social_network.other_models.media import PostMedia
 from django.views.decorators.http import require_POST
 
 # post -----------------------------------------------------------------------------------------------------------

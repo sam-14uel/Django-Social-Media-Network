@@ -96,7 +96,17 @@ class Follow(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.follower.username} follows {self.following.username} on {self.created}"
+        return f"{self.follower.username} followed {self.following.username} on {self.created}"
+    
+
+class Connection(models.Model):
+    requestee = models.ForeignKey(User, on_delete=models.CASCADE, related_name='requester')
+    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='requestee')
+    accepted = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.requester.username} sent {self.requestee.username} a connection request on {self.created}"
 
 
 class Bookmark(models.Model):

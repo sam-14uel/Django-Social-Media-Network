@@ -1,0 +1,38 @@
+<!--Create model-->
+<div class="modal fade" id="add_highlight" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Create Group</div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/chats/r/create_group_chat" method="post">
+            {% csrf_token %}
+                <div class="modal-body">
+                    <div class="mb-3 mt-3">
+                        <label for="group_name" class="form-label">Name *</label>
+                        <input type="text" class="form-control" id="group_name" placeholder="Enter Group Name" name="group_name" required>
+                    </div>
+                    <!--<div class="mb-3 mt-3">
+                        <label for="uname" class="form-label">Description (optional)</label>
+                        <textarea type="text" class="form-control" id="uname" placeholder="Enter Group Description" name="uname"></textarea>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="uname" class="form-label">Group Type</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="groupType" id="privateGroup" value="private" checked>
+                            <label class="form-check-label" for="privateGroup">Private</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="groupType" id="publicGroup" value="public">
+                            <label class="form-check-label" for="publicGroup">Public</label>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" style="width: 100%;">Create Group</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

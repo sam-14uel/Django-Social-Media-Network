@@ -66,18 +66,14 @@
                                                 {% for media in message.media.all %}
                                                     {% if media.media_is_img %}
                                                         <img src="{{media.media.url}}">
-                                                        {% if message.text %}{{message.text}}{% endif %}
                                                     {% elif media.media_is_vid %}
-                                                        <video src="{{media.media.url}}"></video>
-                                                        {% if message.text %}{{message.text}}{% endif %}
+                                                        <video src="{{media.media.url}}" controls></video>
                                                     {% elif media.media_is_aud %}
-                                                        <audio src="{{media.media.url}}"></audio>
-                                                        {% if message.text %}{{message.text}}{% endif %}   
+                                                        <audio src="{{media.media.url}}" controls></audio>   
                                                     {% endif %}
                                                 {% endfor %}
-                                            {% else %}
-                                                {{message.text}}
                                             {% endif %}
+                                            {{message.text}}
                                         </p>
                                     </div>
                                 </div>   
@@ -89,18 +85,14 @@
                                                 {% for media in message.media.all %}
                                                     {% if media.media_is_img %}
                                                         <img src="{{media.media.url}}">
-                                                        {% if message.text %}{{message.text}}{% endif %}
                                                     {% elif media.media_is_vid %}
-                                                        <video src="{{media.media.url}}"></video>
-                                                        {% if message.text %}{{message.text}}{% endif %}
+                                                        <video src="{{media.media.url}}" controls></video>
                                                     {% elif media.media_is_aud %}
-                                                        <audio src="{{media.media.url}}"></audio>
-                                                        {% if message.text %}{{message.text}}{% endif %}   
+                                                        <audio src="{{media.media.url}}" controls></audio>   
                                                     {% endif %}
                                                 {% endfor %}
-                                            {% else %}
-                                                {{message.text}}
                                             {% endif %}
+                                            {{message.text}}
                                         </p>
                                     </div>
                                 </div>    
@@ -117,7 +109,7 @@
                         <div class="card-chat rounded-start-lg-0 border-start-lg-0">
                             <div class="card-footer">
                                 <div class="d-sm-flex align-items-end">
-                                    <textarea id="id_message_send_input" class="form-control mb-sm-0 mb-3" data-autoresize="" placeholder="Type a message" rows="1"></textarea>
+                                    <textarea id="id_message_send_input" class="form-control mb-sm-0 mb-3" data-autoresize="" placeholder="Type a message" rows="1" required></textarea>
                                     <button class="btn btn-sm btn-danger-soft ms-sm-2">
                                         <!--<i class="fa-solid fa-face-smile fs-6"></i>-->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">

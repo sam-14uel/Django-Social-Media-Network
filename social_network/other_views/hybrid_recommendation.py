@@ -12,11 +12,11 @@ def hybrid_recommendations(user, num_recommendations=5):
     content_recs = recommend_posts_content_based(user, num_recommendations=10)
 
 
-    #trending_recs = get_trending_posts(num_recommendations=10)
+    #trending_recs = list(get_trending_posts(num_recommendations=10))
     social_recs = list(get_social_recommendations(user, num_recommendations=10))
     
     # Combine and weigh the results
-    combined_recs = collab_recs[:4] + content_recs[:3] + social_recs[:1]
+    combined_recs = collab_recs[:5] + content_recs[:4] + social_recs[:2]
     
     # Remove duplicates and slice to the top `num_recommendations`
     combined_recs = list(set(combined_recs))[:num_recommendations]

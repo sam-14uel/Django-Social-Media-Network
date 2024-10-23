@@ -84,20 +84,42 @@
     </div>
 </div>
 {% if work_experiences %}
-<div class="desc">
-    <a href="#" data-bs-toggle="collapse" data-bs-target="#work_experience">View Work Experience</a>
-    {% for work_experience in work_experiences %}
-        <div id="work_experience" class="collapse">
-            <span class="desc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
-                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/>
-                </svg>
-                {{work_experience.role}} at @{{work_experience.work_place.user.username}}
-            </span>
-        </div>
-    {% endfor %}
-</div>
-{% else %}
+    <div class="desc">
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#work_experience">View Work Experience</a>
+        {% for work_experience in work_experiences %}
+            <div id="work_experience" class="collapse">
+                <span class="desc">
+                    | <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                        <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/>
+                    </svg>
+                    {{work_experience.role}} at 
+                    <a href="/u/@{{work_experience.work_place.user.username}}">
+                        @{{work_experience.work_place.user.username}}
+                    </a>
+
+                    <!--<div class="cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                            <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                         {{work_experience.role}} at 
+                        <a href="/u/@{{work_experience.work_place.user.username}}">
+                            <div>
+                                <div class="img">
+                                    <img src="{{work_experience.work_place.user.profile.profile_picture.url}}" alt="{{work_experience.work_place.user.username}}'s profile picture">
+                                </div>
+                                <div class="info">
+                                    <p class="name">@{{work_experience.work_place.user.username}}
+                                    </p>
+                                    <p class="second_name">{{work_experience.work_place.user.first_name}} {{work_experience.work_place.user.last_name}} </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>-->
+
+                </span>
+            </div>
+        {% endfor %}
+    </div>
 {% endif %}
 <div class="highlights">
     {% for highlight in highlights %}
@@ -118,14 +140,14 @@
         {% elif highlight.post %}
             <div class="highlight">
                 <div class="img">
-                    <img src="" alt="">
+                    {% for pic in highlight.post.picture.all|slice:"0:1" %}<img src="pic.picture.url" alt="">{% endfor %}
                 </div>
                 <p>{{highlight.name}}</p>
             </div>
         {% endif %}
     {% endfor %}
     {% if request.user == profile.user %}
-        <div class="highlight highlight_add">
+        <div class="highlight highlight_add" data-bs-toggle="modal" data-bs-target="#add_highlight">
             <div class="img">
                 <img src="/static/images/plus.png" alt="">
             </div>
@@ -161,7 +183,7 @@
             <div id="posts_sec" class="post">
                 {% for post in posts %}
                     <div class="item">
-                        {% for pic in post_medias %}<img class="img-fluid item_img" src="{{pic.picture.url}}" alt="{{post.poster.username}}'s post picture">{% endfor %}
+                        {% for pic in post.picture.all|slice:"0:1" %}<img class="img-fluid item_img" src="{{pic.picture.url}}" alt="{{post.poster.username}}'s post picture">{% endfor %}
                     </div>
                 {% endfor %}  
             </div>

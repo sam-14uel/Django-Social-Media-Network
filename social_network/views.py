@@ -99,3 +99,4 @@ def get_social_recommendations(user, num_recommendations=5):
                 #'-total_comments')[:num_recommendations]
     #return trending_posts
 
+

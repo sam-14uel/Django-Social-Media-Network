@@ -25,6 +25,15 @@ def render_mentions_and_hashtags(text):
                 result.append(f'<a class="hashtag" href="/hashtag/{hashtag}">{word}</a>')
             else:
                 result.append(word)
+        elif word.startswith('https://'):
+            link = word
+            result.append(f'<a target="_blank" class="hashtag" href="{link}">{word}</a>')
+        elif word.startswith('http://'):
+            link = word
+            result.append(f'<a target="_blank" class="hashtag" href="{link}">{word}</a>')
+        elif word.startswith('www.'):
+            link = word
+            result.append(f'<a target="_blank" class="hashtag" href="{link}">{word}</a>')
         else:
             result.append(word)
     return mark_safe(' '.join(result))

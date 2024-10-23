@@ -13,12 +13,17 @@ urlpatterns = [
     path('chats/r/<room_id>/delete', message.chatroom_delete_view, name='delete-chatroom'),     #|
     path('chats/r/<room_id>/', message.chatroom_delete_view, name='request-join-room'),         #|
     path('chat/<chat_id>/delete', message.delete_chat, name='delete-chat'),         #|
+    path('chats/r/create_group_chat', message.create_groupchat, name='create-groupchat'),         #| # type: ignore
 #---#--------------------------------------------------------------------------------------------------------
 
 
 #---# profile ---------------------------------------------------------------------------------------
     path('u/@<username>/', account.user_profile, name='user-profile'),                  #|
     path('u/@<username>/edit', account.edit_profile, name='edit-profile'),              #|
+    path('u/@<username>/edit_profile_picture', account.edit_profile_picture, name='edit-profile-picture'),              #|
+    path('u/@<username>/enhance', account.enhance_profile, name='enhance-profile'),     #|
+    path('settings/', account.account_settings, name='account-settings'),              #|
+    path('dashboard/', account.account_dashboard, name='account-dashboard'),              #|
 #---#------------------------------------------------------------------------------------------------
 
 
@@ -32,6 +37,7 @@ urlpatterns = [
     path('signin/', auth.signin, name='signin'),    #|
     path('signup/', auth.signup, name='signup'),    #|
     path('signout/', auth.signout, name='signout'), #|
+    path('activate/<uidb64>/<token>', auth.activate, name="activate"),
     path('accounts/login/', auth.account_login, name='accounts-login'), #|
     path('check_username/', auth.check_username, name='check_username'), #|
     path('check_email/', auth.check_email, name='check_email'), #|

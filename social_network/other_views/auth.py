@@ -75,7 +75,7 @@ def signup(request):
 
         current_site = get_current_site(request)
         email_subject = "Email confirmation @ NOES AI"
-        message2 = render_to_string('authentication/email_confirmation.html',{
+        message2 = render_to_string('auth/email_confirmation.html',{
             'name': myuser.first_name,
             'domain': current_site.domain,
             'uid': urlsafe_base64_encode(force_bytes(myuser.pk)),
@@ -130,12 +130,12 @@ def activate(request, uidb64, token):
         login(request, myuser)
         return redirect('home')
     else:
-        return render(request, 'authentication/activation_failed.html')
+        return render(request, 'auth/activation_failed.html')
 
 
 def signout(request):
     auth.logout(request)
-    messages.success(request, "Logged out")
+    messages.success(request, f"successfully logged out", "success")
     return redirect('signin')
 
 

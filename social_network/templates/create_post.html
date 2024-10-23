@@ -15,9 +15,10 @@
                 <p>Drag photos and videos here</p>
                 <button class="btn btn-primary btn_upload">
                     select from your computer
-                    <form id="upload-form">
-                        <input class="input_select" type="file" id="image-upload" name="image-upload" multiple>
-                    </form>
+            <form id="upload-form" action="/create_post/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                        <input class="input_select" type="file" id="image-upload" name="image-upload">
+                    <!--</form>-->
                 </button>
                 <div id="image-container" class="hide_img">
                 </div>
@@ -34,9 +35,10 @@
                                 </div>
                             </div>
                         </div>
-                        <form>
-                            <textarea type="text" id="emoji_create" placeholder="write your email"></textarea>
-                        </form>
+                        <!--<form>-->
+                            <textarea name="post_caption" type="text" id="emoji_create" placeholder="write your something.."></textarea>
+                            <button type="submit" class="btn btn-primary" style="width: 82%;">Post</button>
+            </form>
                     </div>
                 </div>
                 <div class="post_published hide_img">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit profile | @{{request.user.username}} on MABNET</title>
+    <title>Edit profile | @{{request.user.username}} on Afriwallstreet</title>
     {% include 'stylesheets.html' %}
 </head>
 <body>
@@ -14,9 +14,7 @@
         {% include 'nav.html' %}
         <!--***** nav menu end ****** -->
 
-        <div class="profile_container">
             {% include 'edit_profile_container.html' %}
-        </div>
 
 
         <!--Create model-->
@@ -25,6 +23,22 @@
     </div>
 
     {% include 'scripts.html' %}
+    <script>
+        function previewImage(event) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            var output = document.getElementById('image-preview');
+            output.src = reader.result;
+            output.class = "rounded-circle img-responsive mt-2"
+            output.style.height = 128
+            output.style.width = 128
+            //output.style.display = "block";
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+        var imageUpload = document.getElementById('inputImageUpload');
+        imageUpload.addEventListener('change', previewImage);
+    </script>
 </body>
 
 </html>
